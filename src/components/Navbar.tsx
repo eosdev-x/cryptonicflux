@@ -1,26 +1,31 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 import SocialLinks from './SocialLinks';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isActive = (path: string) => {
+    return location.pathname === path ? 'text-cyan-400' : 'text-gray-300 hover:text-cyan-400';
+  };
 
   return (
     <nav className="fixed w-full z-50 bg-gray-900/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <h1 className="text-2xl font-bold text-cyan-400 glow-text">
+          <Link to="/" className="text-2xl font-bold text-cyan-400 glow-text">
             CryptonicFlux
-          </h1>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             <div className="flex space-x-6">
-              <a href="#home" className="nav-link">Home</a>
-              <a href="#schedule" className="nav-link">Schedule</a>
-              <a href="#gallery" className="nav-link">Gallery</a>
-              <a href="#about" className="nav-link">About</a>
+              <Link to="/" className={`${isActive('/')} transition-colors`}>Home</Link>
+              <Link to="/gallery" className={`${isActive('/gallery')} transition-colors`}>Gallery</Link>
+              <Link to="/about" className={`${isActive('/about')} transition-colors`}>About</Link>
             </div>
             <SocialLinks />
           </div>
