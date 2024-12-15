@@ -1,6 +1,6 @@
 import React from 'react';
 
-const scheduleData = [
+export const scheduleData = [
   { day: 'Monday', time: '8:00 PM EST', title: 'Crypto Market Analysis' },
   { day: 'Wednesday', time: '7:00 PM EST', title: 'Tech Talk & Reviews' },
   { day: 'Friday', time: '9:00 PM EST', title: 'Gaming Night' },

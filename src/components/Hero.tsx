@@ -1,11 +1,50 @@
 import React from 'react';
 import { Play, Calendar, Clock } from 'lucide-react';
+import { scheduleData } from './Schedule';
 
 export default function Hero() {
   const scrollToSchedule = () => {
     const scheduleSection = document.getElementById('schedule');
     scheduleSection?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const getNextStream = () => {
+    const now = new Date();
+    const currentDay = now.toLocaleString('en-US', { weekday: 'long' });
+    const currentHour = now.getHours();
+    const currentMinutes = now.getMinutes();
+
+    // Convert schedule times to comparable values
+    const scheduleWithDates = scheduleData.map(stream => {
+      const [time, period] = stream.time.split(' ')[0].split(':');
+      let hours = parseInt(time);
+      if (stream.time.includes('PM') && hours !== 12) hours += 12;
+      if (stream.time.includes('AM') && hours === 12) hours = 0;
+      return {
+        ...stream,
+        hours,
+        minutes: 0, // All streams start at XX:00
+        sortValue: stream.day === currentDay && (hours < currentHour || (hours === currentHour && 0 <= currentMinutes)) 
+          ? hours + 168 // Add a week if the stream already passed today
+          : hours + getDayOffset(currentDay, stream.day) * 24
+      };
+    });
+
+    // Sort and get the next stream
+    const nextStream = scheduleWithDates.sort((a, b) => a.sortValue - b.sortValue)[0];
+    return nextStream;
+  };
+
+  const getDayOffset = (currentDay: string, targetDay: string) => {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const currentIndex = days.indexOf(currentDay);
+    const targetIndex = days.indexOf(targetDay);
+    let offset = targetIndex - currentIndex;
+    if (offset <= 0) offset += 7;
+    return offset;
+  };
+
+  const nextStream = getNextStream();
 
   return (
     <div className="min-h-screen relative overflow-hidden animate-gradient">
@@ -42,7 +81,7 @@ export default function Hero() {
             <div className="card">
               <Clock className="w-8 h-8 text-cyan-400 mb-4 mx-auto" />
               <h3 className="text-xl font-semibold text-white mb-2">Next Stream</h3>
-              <p className="text-gray-300">Today at 8:00 PM EST</p>
+              <p className="text-gray-300">{nextStream.day} at {nextStream.time}</p>
             </div>
             
             <div className="card">
