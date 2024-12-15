@@ -85,8 +85,8 @@ export default function Hero() {
             </div>
             
             <div className="card">
-              <div className="text-4xl font-bold text-cyan-400 mb-2">50K+</div>
-              <p className="text-gray-300">Community Members</p>
+              <div className="text-4xl font-bold text-cyan-400 mb-2">1K+</div>
+              <p className="text-gray-300">Hours Streamed</p>
             </div>
             
             <div className="card">
