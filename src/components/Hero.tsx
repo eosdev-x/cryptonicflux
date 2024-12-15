@@ -70,7 +70,7 @@ export default function Hero() {
             </a>
             <button 
               onClick={scrollToSchedule}
-              className="button bg-gray-700 hover:bg-gray-600 flex items-center space-x-2"
+              className="button bg-gray-700 flex items-center space-x-2"
             >
               <Calendar className="w-5 h-5" />
               <span>View Schedule</span>
