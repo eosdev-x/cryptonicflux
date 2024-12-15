@@ -2,6 +2,11 @@ import React from 'react';
 import { Play, Calendar, Clock } from 'lucide-react';
 
 export default function Hero() {
+  const scrollToSchedule = () => {
+    const scheduleSection = document.getElementById('schedule');
+    scheduleSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen relative overflow-hidden animate-gradient">
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550745165-9bc0b252726f')] 
@@ -18,17 +23,22 @@ export default function Hero() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-            <button className="button flex items-center space-x-2">
-              <Play className="w-5 h-5" />
-              <span>Watch Live</span>
-            </button>
-            <button className="button bg-gray-700 hover:bg-gray-600 flex items-center space-x-2">
+            <a href="https://www.twitch.tv/cryptonicflux" target="_blank" rel="noopener noreferrer">
+              <button className="button flex items-center space-x-2">
+                <Play className="w-5 h-5" />
+                <span>Watch Live</span>
+              </button>
+            </a>
+            <button 
+              onClick={scrollToSchedule}
+              className="button bg-gray-700 hover:bg-gray-600 flex items-center space-x-2"
+            >
               <Calendar className="w-5 h-5" />
               <span>View Schedule</span>
             </button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div id="schedule" className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="card">
               <Clock className="w-8 h-8 text-cyan-400 mb-4 mx-auto" />
               <h3 className="text-xl font-semibold text-white mb-2">Next Stream</h3>
