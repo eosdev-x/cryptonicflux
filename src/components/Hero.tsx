@@ -1,4 +1,4 @@
-import React from 'react';
+// React is automatically imported in Next.js with JSX Transform
 import { Play, Calendar, Clock } from 'lucide-react';
 import { scheduleData } from './Schedule';
 
@@ -16,7 +16,7 @@ export default function Hero() {
 
     // Convert schedule times to comparable values
     const scheduleWithDates = scheduleData.map(stream => {
-      const [time, period] = stream.time.split(' ')[0].split(':');
+      const [time] = stream.time.split(' ')[0].split(':');
       let hours = parseInt(time);
       if (stream.time.includes('PM') && hours !== 12) hours += 12;
       if (stream.time.includes('AM') && hours === 12) hours = 0;
@@ -51,7 +51,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550745165-9bc0b252726f')] 
                       bg-cover bg-center opacity-10"></div>
       
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-52 pb-16">
         <div className="text-center animate-float">
           <h1 className="text-6xl font-bold text-white mb-6 glow-text">
             Welcome to the Flux Zone
