@@ -3,12 +3,17 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+        display: ['Syne', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+      },
       colors: {
-        gray: {
-          900: '#0f1729',
-          800: '#1a1f2e',
-          700: '#2d3748',
-        },
+        ink: '#f0ebe1',
+        mute: '#9a9488',
+        paper: '#1a1915',
+        line: '#2a2822',
+        accent: '#d6f25c',
       },
     },
   },

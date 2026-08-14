@@ -1,32 +1,31 @@
-import React from 'react';
-
-export const scheduleData = [
-  { day: 'Monday', time: '8:00 PM EST', title: 'Crypto Market Analysis' },
-  { day: 'Wednesday', time: '7:00 PM EST', title: 'Tech Talk & Reviews' },
-  { day: 'Friday', time: '9:00 PM EST', title: 'Gaming Night' },
-  { day: 'Saturday', time: '3:00 PM EST', title: 'Community Events' },
-];
+import { weekBoard } from '../data/schedule';
 
 export default function Schedule() {
+  const today = new Date().toLocaleString('en-US', { weekday: 'long' });
+
   return (
-    <section id="schedule" className="py-20 bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center text-white mb-12 glow-text">
-          Stream Schedule
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {scheduleData.map((item, index) => (
-            <div key={index} className="card hover-scale">
-              <div className="text-lg font-semibold text-cyan-400 mb-2">
-                {item.day}
-              </div>
-              <div className="text-white mb-1">{item.time}</div>
-              <div className="text-gray-400">{item.title}</div>
-            </div>
-          ))}
-        </div>
+    <section className="week" id="schedule">
+      <div className="week-head">
+        <h2>Stream schedule</h2>
+        <span>Eastern time</span>
       </div>
+      <div className="board">
+        {weekBoard.map((item) => {
+          const off = !item.time;
+          const todayClass = item.day === today ? ' is-today' : '';
+          const offClass = off ? ' is-off' : '';
+          return (
+            <article key={item.day} className={`slot${offClass}${todayClass}`}>
+              <div className="slot-day">{item.day.slice(0, 3)}</div>
+              <div className="slot-title">{item.title}</div>
+              <div className="slot-time">{item.time || '—'}</div>
+            </article>
+          );
+        })}
+      </div>
+      <p className="facts">
+        <b>1K+</b> hours streamed · Discord community <b>24/7</b>
+      </p>
     </section>
   );
 }
