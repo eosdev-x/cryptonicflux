@@ -264,7 +264,7 @@ a {
   align-items: center;
   justify-content: center;
   border: 1px solid var(--line);
-  background: transparent;
+  background: #111318;
   cursor: pointer;
 }
 
@@ -1128,7 +1128,7 @@ a {
   inset: 0;
   width: 100%;
   border: 0;
-  background: rgba(4, 5, 6, 0.92);
+  background: rgba(4, 5, 6, 0.97);
   cursor: pointer;
 }
 
@@ -1234,6 +1234,10 @@ a {
 
   .wrap {
     width: min(100% - 1.5rem, var(--max));
+  }
+
+  .mast {
+    background: #0a0b0d;
   }
 
   .nav-desktop {
