@@ -220,11 +220,10 @@ a {
 
 .hero {
   display: grid;
-  min-height: calc(100vh - var(--mast-height));
-  grid-template-columns: minmax(0, 1.12fr) minmax(350px, 0.72fr);
-  align-items: center;
-  gap: clamp(3rem, 7vw, 7rem);
-  padding: clamp(4rem, 8vw, 7rem) 0;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 2.75rem;
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -269,18 +268,26 @@ a {
   max-width: 850px;
   margin: 0;
   font-family: Outfit, sans-serif;
-  font-size: clamp(2.75rem, 5.4vw, 5rem);
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
   font-weight: 800;
   letter-spacing: -0.045em;
-  line-height: 0.95;
-  text-wrap: pretty;
+  line-height: 0.92;
+}
+
+.hero h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero h1 span,
+.hero h1 em {
+  white-space: nowrap;
 }
 
 .hero h1 em {
-  display: block;
   color: var(--acid);
   font-style: normal;
-  white-space: nowrap;
 }
 
 .hero-lede {
@@ -355,6 +362,7 @@ a {
 
 .on-air-card {
   position: relative;
+  width: min(100%, 28rem);
   min-height: 490px;
   overflow: hidden;
   border: 1px solid var(--line-bright);

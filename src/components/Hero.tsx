@@ -17,7 +17,7 @@ export default function Hero(): ReactElement {
         transition={{ duration: 0.55, ease: 'easeOut' }}
       >
         <p className="eyebrow"><span>Channel 01</span> Welcome to the Flux Zone</p>
-        <h1 id="hero-title">Live games.<br /><em>Good company.</em></h1>
+        <h1 id="hero-title"><span>Live games.</span><em>Good company.</em></h1>
         <p className="hero-lede">
           Tune in for late-night gaming, League sessions, community lobbies, and tools built for the next queue.
         </p>
