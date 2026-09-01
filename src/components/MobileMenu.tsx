@@ -31,12 +31,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps): ReactE
   return (
     <AnimatePresence>
       {isOpen ? (
-        <motion.div
-          className="drawer"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
+        <motion.div className="drawer" initial={false} animate={{ opacity: 1 }} exit={{ opacity: 1 }}>
           <button className="drawer-backdrop" type="button" onClick={onClose} aria-label="Close navigation menu" />
           <motion.nav
             className="drawer-panel"
