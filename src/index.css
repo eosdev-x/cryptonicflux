@@ -116,8 +116,7 @@ a {
   top: 0;
   height: var(--mast-height);
   border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--bg) 87%, transparent);
-  backdrop-filter: blur(18px);
+  background: var(--bg);
 }
 
 .mast-inner {
@@ -1121,6 +1120,7 @@ a {
   position: fixed;
   z-index: 70;
   inset: 0;
+  background: #050607;
 }
 
 .drawer-backdrop {
@@ -1128,7 +1128,7 @@ a {
   inset: 0;
   width: 100%;
   border: 0;
-  background: rgba(4, 5, 6, 0.97);
+  background: #050607;
   cursor: pointer;
 }
 
