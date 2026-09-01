@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Radio, Search } from 'lucide-react';
-import { LOL_SEARCH_URL, TWITCH_URL } from '../constants';
+import { ArrowDown, ArrowUpRight, Radio } from 'lucide-react';
+import { TWITCH_URL } from '../constants';
 import { getNextStream } from '../data/schedule';
 
 export default function Hero(): ReactElement {
@@ -24,9 +24,6 @@ export default function Hero(): ReactElement {
         <div className="hero-actions" aria-label="Featured destinations">
           <a className="button button-live" href={TWITCH_URL} target="_blank" rel="noopener noreferrer">
             <Radio aria-hidden="true" size={18} /> Watch on Twitch
-          </a>
-          <a className="button button-tool" href={LOL_SEARCH_URL} target="_blank" rel="noopener noreferrer">
-            <Search aria-hidden="true" size={18} /> Open LoL Search
           </a>
         </div>
         <a className="schedule-jump" href="#schedule">
