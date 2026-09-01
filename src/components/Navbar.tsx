@@ -1,9 +1,9 @@
 import type { ReactElement } from 'react';
 import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
-import { ArrowUpRight, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import MobileMenu from './MobileMenu';
-import { LOL_SEARCH_URL } from '../constants';
+import SearchToolsMenu from './SearchToolsMenu';
 
 const links = [
   { to: '/', label: 'Home' },
@@ -33,9 +33,7 @@ export default function Navbar(): ReactElement {
               {link.label}
             </Link>
           ))}
-          <a className="nav-tool" href={LOL_SEARCH_URL} target="_blank" rel="noopener noreferrer">
-            LoL Search <ArrowUpRight aria-hidden="true" size={14} />
-          </a>
+          <SearchToolsMenu />
         </nav>
 
         <button

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Link } from '@tanstack/react-router';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRight, X } from 'lucide-react';
-import { LOL_SEARCH_URL } from '../constants';
+import { SEARCH_TOOLS } from '../constants';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -57,9 +57,17 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps): ReactE
                 <span>0{index + 1}</span> {link.label}
               </Link>
             ))}
-            <a className="drawer-tool" href={LOL_SEARCH_URL} target="_blank" rel="noopener noreferrer">
-              LoL Search <ArrowUpRight aria-hidden="true" size={18} />
-            </a>
+            {SEARCH_TOOLS.map((tool) => (
+              <a
+                key={tool.href}
+                className="drawer-tool"
+                href={tool.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {tool.label} <ArrowUpRight aria-hidden="true" size={18} />
+              </a>
+            ))}
           </motion.nav>
         </motion.div>
       ) : null}
