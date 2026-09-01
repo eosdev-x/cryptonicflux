@@ -1,41 +1,60 @@
+import type { ReactElement } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowDown, ArrowUpRight, Radio, Search } from 'lucide-react';
+import { LOL_SEARCH_URL, TWITCH_URL } from '../constants';
 import { getNextStream } from '../data/schedule';
 
-export default function Hero() {
+export default function Hero(): ReactElement {
+  const reduceMotion = useReducedMotion();
   const nextStream = getNextStream();
 
   return (
-    <section className="broadcast">
-      <div>
-        <p className="kicker">Welcome to the</p>
-        <h1 className="display">Flux Zone</h1>
-        <p className="lede">
-          Join me on an epic journey through crypto, gaming, and technology. Live streams that
-          educate, entertain, and inspire.
+    <section className="hero" aria-labelledby="hero-title">
+      <motion.div
+        className="hero-copy"
+        initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, ease: 'easeOut' }}
+      >
+        <p className="eyebrow"><span>Channel 01</span> Welcome to the Flux Zone</p>
+        <h1 id="hero-title">Live games.<br /><em>Good company.</em></h1>
+        <p className="hero-lede">
+          Tune in for late-night gaming, League sessions, community lobbies, and tools built for the next queue.
         </p>
-      </div>
-      <aside className="next" aria-label="Next stream">
-        <div className="next-top">
-          <span>Next up</span>
-          <span className="next-live">Twitch</span>
-        </div>
-        <h2>{nextStream.title}</h2>
-        <p className="next-meta">
-          {nextStream.day} · {nextStream.time}
-        </p>
-        <div className="actions">
-          <a
-            className="btn btn-primary"
-            href="https://www.twitch.tv/cryptonicflux"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Watch Live
+        <div className="hero-actions" aria-label="Featured destinations">
+          <a className="button button-live" href={TWITCH_URL} target="_blank" rel="noopener noreferrer">
+            <Radio aria-hidden="true" size={18} /> Watch on Twitch
           </a>
-          <a className="btn btn-ghost" href="#schedule">
-            View schedule
+          <a className="button button-tool" href={LOL_SEARCH_URL} target="_blank" rel="noopener noreferrer">
+            <Search aria-hidden="true" size={18} /> Open LoL Search
           </a>
         </div>
-      </aside>
+        <a className="schedule-jump" href="#schedule">
+          This week’s board <ArrowDown aria-hidden="true" size={15} />
+        </a>
+      </motion.div>
+
+      <motion.aside
+        className="on-air-card"
+        aria-label="Next stream"
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.97 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.12 }}
+      >
+        <div className="signal-lines" aria-hidden="true"><span /><span /><span /><span /><span /></div>
+        <div className="on-air-top">
+          <span className="status"><i /> Next transmission</span>
+          <span>CF—LIVE</span>
+        </div>
+        <div className="on-air-number" aria-hidden="true">01</div>
+        <div className="on-air-content">
+          <p>{nextStream.day} · {nextStream.time}</p>
+          <h2>{nextStream.title}</h2>
+          <a href={TWITCH_URL} target="_blank" rel="noopener noreferrer">
+            Go to channel <ArrowUpRight aria-hidden="true" size={17} />
+          </a>
+        </div>
+      </motion.aside>
     </section>
   );
 }

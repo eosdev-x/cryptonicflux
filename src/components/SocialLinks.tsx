@@ -1,6 +1,7 @@
+import type { ReactElement } from 'react';
 import { socialLinks } from '../data/social';
 
-export default function SocialLinks({ className = '' }: { className?: string }) {
+export default function SocialLinks({ className = '' }: { className?: string }): ReactElement {
   return (
     <div className={`social-text ${className}`.trim()}>
       {socialLinks.map((item) => (
