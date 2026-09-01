@@ -1,50 +1,53 @@
+import type { ReactElement } from 'react';
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
+import { ArrowUpRight, Menu } from 'lucide-react';
 import MobileMenu from './MobileMenu';
-import SocialLinks from './SocialLinks';
+import { LOL_SEARCH_URL } from '../constants';
 
 const links = [
   { to: '/', label: 'Home' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/about', label: 'About' },
-];
+] as const;
 
-export default function Navbar() {
+export default function Navbar(): ReactElement {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation();
 
   return (
     <header className="mast">
       <div className="wrap mast-inner">
-        <Link to="/" className="brand">
-          <span className="mark">CF</span>
+        <Link to="/" className="brand" aria-label="CryptonicFlux home">
+          <span className="mark" aria-hidden="true">CF</span>
           <span className="brand-name">CryptonicFlux</span>
         </Link>
 
-        <nav className="nav-desk" aria-label="Primary">
+        <nav className="nav-desktop" aria-label="Primary navigation">
           {links.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              aria-current={location.pathname === link.to ? 'page' : undefined}
+              activeOptions={{ exact: link.to === '/' }}
+              activeProps={{ 'aria-current': 'page' }}
             >
               {link.label}
             </Link>
           ))}
+          <a className="nav-tool" href={LOL_SEARCH_URL} target="_blank" rel="noopener noreferrer">
+            LoL Search <ArrowUpRight aria-hidden="true" size={14} />
+          </a>
         </nav>
 
-        <SocialLinks className="social-desk" />
-
         <button
-          className="menu-btn"
+          className="menu-button"
           type="button"
           onClick={() => setIsMenuOpen(true)}
-          aria-label="Open menu"
+          aria-label="Open navigation menu"
+          aria-expanded={isMenuOpen}
         >
-          Menu
+          <Menu aria-hidden="true" size={22} />
         </button>
       </div>
-
       <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </header>
   );
